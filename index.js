@@ -1,19 +1,19 @@
-const http = require("http");
-const fs = require("fs");
-const { google } = require("googleapis");
-const OAuth2 = google.auth.OAuth2;
+var express = require("express");
+var app = express();
+var fs = require("fs");
+var { google } = require("googleapis");
+var OAuth2 = google.auth.OAuth2;
 
-const hostname = "127.0.0.1";
-const port = 3000;
-
-const server = http.createServer((req, res) => {
-  res.statusCode = 200;
-  res.setHeader("Content-Type", "text/plain");
-  res.end("Hello World\n");
+app.get("/", function(req, res) {
+  res.send("Hello World");
 });
 
-server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
+var server = app.listen(3000, function() {
+  var host = server.address().address;
+  var port = server.address().port;
+  
+  console.log("Example app listening at http://%s:%s", host, port);
+  
 });
 
 fs.watch(".", (eventType, filename) => {
