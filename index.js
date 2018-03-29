@@ -1,5 +1,7 @@
 const http = require("http");
 const fs = require("fs");
+const { google } = require("googleapis");
+const OAuth2 = google.auth.OAuth2;
 
 const hostname = "127.0.0.1";
 const port = 3000;
@@ -18,6 +20,7 @@ fs.watch(".", (eventType, filename) => {
   if (eventType === "rename" && filename.endsWith(".mp3")) {
     if (fs.existsSync(filename)) {
       console.log('subir archivo');
+      // google.google
     }
   }
 });
